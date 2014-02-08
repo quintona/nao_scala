@@ -1,0 +1,20 @@
+package io.github.quintona.nao
+
+import com.aldebaran.proxy._
+
+class VariantWrapp(variant:Variant){
+  def toString():String = variant.getType match {
+    case VINT => variant.toInt
+    case VBOOL => variant.toBoolean
+    case VSTRING => variant.toString
+    case VCHARARRAY => variant.toStringArray
+    case VFLOATARRAY => variant.toFloatArrya
+    case VARRAY => "Text Representation Unsupported"
+    case VINTARRAY => variant.toIntArray
+    case VFLOAT => variant.toFloat
+    case VBINARY => variant.toBinary
+    case _ => "TextRepresentation Unsupported""
+  }
+}
+
+implicit def wrappVariant(variant: Variant) = new VariantWrapp(variant)

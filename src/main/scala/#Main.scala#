@@ -1,0 +1,22 @@
+
+
+
+
+object Main extends Application {
+  val NAO_IP = "10.0.0.50"
+  val NAO_PORT = 9559
+  System.loadLibrary("jnaoqi")
+  import com.aldebaran.proxy.ALTextToSpeechProxy
+  val tts = new ALTextToSpeechProxy(NAO_IP, NAO_PORT)
+  tts.say("Hello,again")
+
+}
+
+def getproxy = {
+  val NAO_IP = "10.0.0.50"
+  val NAO_PORT = 9559
+  System.loadLibrary("jnaoqi")
+  import com.aldebaran.proxy.ALTextToSpeechProxy
+  new ALTextToSpeechProxy(NAO_IP, NAO_PORT)
+}
+

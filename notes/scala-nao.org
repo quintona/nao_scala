@@ -1,0 +1,12 @@
+* Tasks
+** TODO FIgure out the variant compiler issue
+** TODO Get the basic controls in place in Python, within emacs and iPython
+** TODO Get the detection working using OpenCV
+** TODO Work on making the Akka integration work nicely.
+** DONE get the basics working from sbt again, all the classpaths now making would be good!
+* Current Issue
+
+The implicit conversion is working, which means that the underlying type is represented incorrectly (typeV), the pattern matching is correct, but the wrong method is being called. This is more concerning, 
+it means that the type is being derived incorrectly and then validated in another way later.
+
+** TODO fix the variant issues...

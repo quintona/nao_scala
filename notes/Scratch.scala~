@@ -1,0 +1,8 @@
+
+:power
+vals.isettings.maxPrintString = 100
+
+import io.github.quintona.nao._
+
+val speech = ProxyFactory.speechProxy
+val sonar = ProxyFactory.sonarProxy

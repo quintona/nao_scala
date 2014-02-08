@@ -1,0 +1,17 @@
+package io.github.quintona.nao
+
+object ProxyFactory {
+  System.loadLibrary("jnaoqi")
+  val NAO_IP = "10.0.0.50"
+  val NAO_PORT = 9559
+
+  def speechProxy = {
+    import com.aldebaran.proxy.ALTextToSpeechProxy
+    new ALTextToSpeechProxy(NAO_IP, NAO_PORT)
+  }
+
+  def sonarProxy = {
+    import com.aldebaran.proxy.ALSonarProxy
+    new ALSonarProxy(NAO_IP, NAO_PORT)
+  }
+}

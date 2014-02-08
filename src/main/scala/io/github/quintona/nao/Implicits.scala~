@@ -1,0 +1,5 @@
+package io.github.quintona.nao
+
+object Implicits{
+  implicit def wrappVariant(variant: Variant) = new VariantWrapp(variant)
+}
