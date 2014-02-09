@@ -7,15 +7,11 @@ object ProxyFactory {
   val NAO_IP = "10.0.0.50"
   val NAO_PORT = 9559
 
-  def speechProxy = {
-    new ALTextToSpeechProxy(NAO_IP, NAO_PORT)
-  }
-
-  def sonarProxy = {
-    new ALSonarProxy(NAO_IP, NAO_PORT)
-  }
-
-  def memory = {
-    new ALMemoryProxy(NAO_IP, NAO_PORT)
-  }
+  def speech = new ALTextToSpeechProxy(NAO_IP, NAO_PORT)
+  def sonar = new ALSonarProxy(NAO_IP, NAO_PORT)
+  def memory = new ALMemoryProxy(NAO_IP, NAO_PORT)
+  def posture = new ALRobotPostureProxy(NAO_IP, NAO_PORT)
+  def motion = new ALMotionProxy(NAO_IP, NAO_PORT)
+  def navigation = new ALNavigationProxy(NAO_IP, NAO_PORT)
+  def behavior = new ALBehaviorManagerProxy(NAO_IP, NAO_PORT)
 }

@@ -6,7 +6,9 @@ class VariantWrapp(variant:Variant){
 
 //  override def toString = "NAV"
 
-  override def toString : String = variant.getType match {
+  override def toString : String = {
+    println(variant.getType.swigValue)
+    variant.getType match {
     case t:Variant.typeV if t.toString == "VFLOAT" => variant.toFloat.toString
     case t:Variant.typeV if t.toString == "VINT" => variant.toInt.toString
     case t:Variant.typeV if t.toString == "VBOOL" => variant.toBoolean.toString
@@ -17,5 +19,6 @@ class VariantWrapp(variant:Variant){
     case t:Variant.typeV if t.toString == "VINTARRAY" => variant.toIntArray.toString
     case t:Variant.typeV if t.toString == "VBINARY" => variant.toBinary.toString
     case _ => "TextRepresentation Unsupported"
+  }
   }
 }
