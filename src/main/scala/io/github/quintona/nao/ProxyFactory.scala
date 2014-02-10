@@ -14,4 +14,5 @@ object ProxyFactory {
   def motion = new ALMotionProxy(NAO_IP, NAO_PORT)
   def navigation = new ALNavigationProxy(NAO_IP, NAO_PORT)
   def behavior = new ALBehaviorManagerProxy(NAO_IP, NAO_PORT)
+  def leds = new ALLedsProxy(NAO_IP, NAO_PORT)
 }

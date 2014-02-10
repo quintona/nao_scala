@@ -1,6 +1,5 @@
 * Tasks
 ** DONE FIgure out the variant compiler issue
-** TODO Get the basic controls in place in Python, within emacs and iPython
 ** DONE get the basics working from sbt again, all the classpaths now making would be good!
 ** TODO Get Object detection working
 ** TODO Play more with the sonar

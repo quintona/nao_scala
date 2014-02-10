@@ -22,7 +22,7 @@ sonar.unsubscribe("scala")
 //motion
 val posture = ProxyFactory.posture
 val motion = ProxyFactory.motion
-val navigation = ProxyFactory.navigation
+val navigation = ProxnyFactory.navigation
 //x,y,theta
 navigation.moveTo(1.0f,0.0f,0.0f)
 motion.wakeUp
@@ -51,3 +51,20 @@ def checkSonar = for(i <- 1 to 10){
   println("Sensor Data: " + f1 + " and " + f2)
   Thread.sleep(1000)
 } 
+
+
+// Here are the actor startup details:
+import akka.actor.{ActorSystem, Props}  
+implicit val system = ActorSystem("nao")
+val service = system.actorOf(SensorActor.props(0.1f), "sensor-actor")
+service ! Subscribe
+service ! Unsubscribe
+val listener = system.actorOf(DistanceFlicker.props, "flicker")
+
+val leds = ProxyFactory.leds
+leds.off("FaceLeds") 
+leds.on("FaceLeds")
+leds.createGroup...
+
+
+
