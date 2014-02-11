@@ -1,9 +1,9 @@
 package io.github.quintona.nao
 
-import com.aldebaran.proxy.Variant
+import com.aldebaran.proxy._
 
 object Implicits{
-  //implicit def wrappVariant(variant: Variant) = new VariantWrapp(variant)
+  implicit def motionToMotion(proxy: ALMotionProxy) = new Motion(proxy)
   implicit def variantToFloat(variant: Variant) = variant.toFloat
   implicit def variantToString(variant:Variant) = variant.getType match {
     case t:Variant.typeV if t.toString == "VFLOAT" => variant.toFloat.toString

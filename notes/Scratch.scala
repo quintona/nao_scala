@@ -1,70 +1,59 @@
 
-:power
-vals.isettings.maxPrintString = 100
 export DYLD_LIBRARY_PATH=/Users/quintonanderson/workspace/qiws/naoqi-sdk-1.14.5-mac64/lib/
 
-import io.github.quintona.nao._
-import io.github.quintona.nao.Implicits._
-
-//general
-val memory = ProxyFactory.memory
+:load notes/Init.scala
+:load notes/InitProxies.scala
 
 //speech
-val speech = ProxyFactory.speech
-speech.say("HAHAHA!")
+speech.say("Scala is awesome, for a JVM thing")
 
 //sonar
-val sonar = ProxyFactory.sonar
 sonar.subscribe("scala")
 val f: Float = memory.getData("Device/SubDeviceList/US/Left/Sensor/Value")
 sonar.unsubscribe("scala")
 
 //motion
-val posture = ProxyFactory.posture
-val motion = ProxyFactory.motion
-val navigation = ProxnyFactory.navigation
 //x,y,theta
 navigation.moveTo(1.0f,0.0f,0.0f)
 motion.wakeUp
 motion.rest
-motion.stiffnessInterpolation("Body", 1.0f, 1.0f)//on
-motion.stiffnessInterpolation("Body", 0.0f, 1.0f)//off
+//motion.stiffnessInterpolation("Body", 1.0f, 1.0f)//on
+//motion.stiffnessInterpolation("Body", 0.0f, 1.0f)//off
 motion.getSummary
 //Crouch, LyingBack, LyingBelly, Sit, SitRelax, Stand, StandInit, StandZero
 posture.goToPosture("Stand", 1.0f) 
 posture.goToPosture("Sit", 1.0f) 
-motion.openHand("RHand")
-motion.closeHand("RHand")
+motion.openRightHand
+motion.closeRightHand
 
 
 //behavior
-val behavior = ProxyFactory.behavior
 behavior.getInstalledBehaviors()
 behavior.getRunningBehaviors()
 behavior.isBehaviorRunning("taiDance")
 behavior.runBehavior("taiDance")
 behavior.stopBehavior("taiDance")
 
-def checkSonar = for(i <- 1 to 10){
-  val f1:Float = memory.getData("Device/SubDeviceList/US/Left/Sensor/Value")
-  val f2:Float = memory.getData("Device/SubDeviceList/US/Right/Sensor/Value") 
-  println("Sensor Data: " + f1 + " and " + f2)
-  Thread.sleep(1000)
-} 
-
-
 // Here are the actor startup details:
-import akka.actor.{ActorSystem, Props}  
-implicit val system = ActorSystem("nao")
-val service = system.actorOf(SensorActor.props(0.1f), "sensor-actor")
-service ! Subscribe
-service ! Unsubscribe
+val sensorActor = system.actorOf(SensorActor.props(0.1f), "sensor-actor")
+sensorActor ! Subscribe
+sensorActor ! Unsubscribe
 val listener = system.actorOf(DistanceFlicker.props, "flicker")
 
-val leds = ProxyFactory.leds
+//LEDs
 leds.off("FaceLeds") 
 leds.on("FaceLeds")
-leds.createGroup...
+
+val f = for{
+  f1 <- Future{navigation.moveTo(1.0f, 0.0f, 0.0f)}.mapTo[Boolean]
+  f2 <- Future{if(f1)navigation.moveTo(0.0f, 1.0f, 0.0f) else false}.mapTo[Boolean]
+  f3 <- Future{if(f2)navigation.moveTo(-1.0f, 0.0f, 0.0f) else false}.mapTo[Boolean]
+} yield f3
+ 
+val result = Await.result(f, 2 minutes)
+
+val b = navigation.moveTo(1.0f, 0.0f, 0.0f)  
+
 
 
 

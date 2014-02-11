@@ -1,16 +1,17 @@
 * Tasks
 ** DONE FIgure out the variant compiler issue
 ** DONE get the basics working from sbt again, all the classpaths now making would be good!
-** TODO Get Object detection working
-** TODO Play more with the sonar
-** TODO test the behavior API
-** TODO Work on making the Akka integration work nicely.
-** TODO get some nice behavior API working
-** TODO pimp memory for sonar
-** TODO pimp motion for hands and others
-** TODO find out more of the memory keys...
-** TODO Implement logic to blink the eyes when something is detected on the sonar...?
-** TODO Motor temp Sensor, periodically checking?
+** DONE Play more with the sonar
+** DONE test the behavior API
+** DONE Work on making the Akka integration work nicely.
+** DONE get some nice behavior API working
+** DONE pimp memory for sonar
+** DONE pimp motion for hands
+** DONE find out more of the memory keys...
+** DONE Implement logic to blink the eyes when something is detected on the sonar...?
+** DONE Monadic future example
+** DONE repl session
+** DONE prepare presentation
 
 * Current Issue
 
@@ -18,3 +19,16 @@ The implicit conversion is working, which means that the underlying type is repr
 it means that the type is being derived incorrectly and then validated in another way later.
 
 ** DONE fix the variant issues...
+
+* Outline
+
+Interactive Coding - overview
+Interactive coding - demo
+Integrating Java with native code
+Wrapping the java library in scala
+Design context
+Why?
+Actors, sense respond
+Chaining effects - monadic context, ending with combined demo
+
+
